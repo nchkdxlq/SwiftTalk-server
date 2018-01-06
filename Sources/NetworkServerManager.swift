@@ -13,7 +13,7 @@ import PerfectHTTPServer
 let serverConfig = [
     "servers": [
         [
-            "name":"192.168.1.100",
+            "name":"192.168.1.168",
             "port":10086,
             "routes": [
                 ["method":"get", "uri":"/", "handler":helloWorldHandle],
@@ -27,11 +27,12 @@ let serverConfig = [
     ]
 ]
 
+
 fileprivate func responseDataWithContent(_ content: Any? = nil,
                                          status: Int = 100200,
                                          message: String = "OK") -> [String: Any] {
     
-    var responseData: [String: Any] = ["status":status, "message": message]
+    var responseData: [String: Any] = ["status":status, "message":message]
     if let _content = content {
         responseData["data"] = _content;
     }
@@ -153,7 +154,7 @@ fileprivate func userUpdateInfo(_ request: HTTPRequest, _ response: HTTPResponse
     }
     
     guard let user_id = request.param(name: "user_id") else {
-        responseInfo = responseDataWithContent(status: 100400, message: "user_id is nil")
+        responseInfo = responseDataWithContent(status: 100401, message: "user_id is nil")
         return;
     }
     
